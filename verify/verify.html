@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Verify</title>
+    </head>
+    <body> 
+        <main>      
+            To continue and check if you are human,<br /> please press the button below:
+            <form id="form_id" method="post" action="/verify/verify.php">
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                <input type="submit" name="action" value="Submit">
+            </form>
+
+            <script>
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('YOUR RECAPTCHA KEY', {action:'Submit'})
+                                .then(function(token) {
+                        document.getElementById('g-recaptcha-response').value = token;
+                    });
+                });
+            </script>
+        </main>
+    </body>
+</html>
