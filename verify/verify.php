@@ -1,4 +1,5 @@
 <?php
+/* Copyright Florian Grethler; info [at] grethler [dot] ch*/
 session_start();
 if (isset($_POST['g-recaptcha-response'])) {
     $captcha = $_POST['g-recaptcha-response'];
