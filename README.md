@@ -20,11 +20,16 @@ verify.php l.12
 ```
 $secret = 'YOUR SECRET RECAPTCHA KEY';
 ```
-And your domainname here:
-verify.php l.10+19
+And for your domainname:
+encrypt.php l.4-6 (this file is only for generation of a encrypted domain)
 ```
-echo '<script>alert("Oops something went wrong. Please try again later."); window.location.href="YOURDOMAIN/verify/verify.html";</script>';
-
-echo '<script>alert("Failed to process reCAPTCHA. Please try again later."); window.location.href=YOURDOMAIN/verify/verify.html";</script>';
-
+$domain = "YOURDOMAIN";
+$encryption_key = "SOME RANDOM KEY";
+$encryption_iv = "SOME RANDOM INITALIZATION VECTOR";
+```
+verify.php l.10-12
+```
+$encrypteddomain = "YOUR ENCRPYTED DOMAIN";
+$encryption_key = "KEY FROM 'encrypt.php'";
+$encryption_iv = "INITALIZATION VECTOR FROM 'encrypt.php'";
 ```

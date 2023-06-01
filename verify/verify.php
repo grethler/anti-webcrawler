@@ -6,9 +6,20 @@ if (isset($_POST['g-recaptcha-response'])) {
 } else {
     $captcha = false;
 }
+// Changable variables
+$encrypteddomain = "YOUR ENCRPYTED DOMAIN";
+$encryption_key = "KEY FROM 'encrypt.php'";
+$encryption_iv = "INITALIZATION VECTOR FROM 'encrypt.php'";
+// End of changable variables
+
+$ciphering = "AES-128-CTR";
+$iv_length = openssl_cipher_iv_length($ciphering);
+$options = 0;
+$domain=openssl_decrypt ($encryption, $ciphering, 
+        $decryption_key, $options, $decryption_iv);
 
 if (!$captcha) {
-    echo '<script>alert("Oops something went wrong. Please try again later."); window.location.href="YOURDOMAIN/verify/verify.html";</script>';
+    echo '<script>alert("Oops something went wrong. Please try again later."); window.location.href="'.$domain.'/verify/verify.html";</script>';
 } else {
     $secret = 'YOUR SECRET RECAPTCHA KEY';
     $response = file_get_contents(
@@ -17,7 +28,7 @@ if (!$captcha) {
     $response = json_decode($response);
 
     if ($response->success === false) {
-        echo '<script>alert("Failed to process reCAPTCHA. Please try again later."); window.location.href=YOURDOMAIN/verify/verify.html";</script>';
+        echo '<script>alert("Failed to process reCAPTCHA. Please try again later."); window.location.href='.$domain.'/verify/verify.html";</script>';
     }
 }
 
